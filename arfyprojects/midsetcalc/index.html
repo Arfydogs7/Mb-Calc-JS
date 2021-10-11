@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>index</title>
+<meta name="description" content="High School Marching Band Midset Calculator" />
+<meta http-equiv="author" content="Elaine Chao">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>window.jQuery || document.write("<script src='../js/jquery-3.5.1.js'><\/script>")</script>
+<!-- tesseract API -->
+<script src='https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js'></script>
+</head>
+
+<body>
+	<p><a id="home" href="../index.html">Home</a></p>
+	<h1>Midset Calculator</h1>
+	<h4>About:</h4>
+	<p id="about">Find midsets by uploading a picture of your dotsheet or using the manual input function. High school hashes/football field sizes apply to all midsets.</p>
+	<p class="smoltext">written in Javascript<br />author: Elaine Chao<br />source code: <a href="https://github.com/Arfydogs7">github link</a><br /><span id = "lastModified"></span></p>
+	<script>
+		var x = document.lastModified;
+		var el = document.getElementById("lastModified");
+		el.innerHTML += "last modified: " + x;
+	</script>
+
+	<div id="dotinput">
+		<fieldset>
+			<legend><b>Input your dots here to find midsets</b></legend>
+			<form method="post" id="scanner" enctype="multipart/form-data">
+				<label>Upload an image file of your dotsheet:
+				<br />
+				<input type="file" name="dotsheet" accept="image/*" />
+				</label>
+				<input type="submit" value="Upload" /><br />
+				<span id="loading"></span>
+			</form>
+
+			<p><b>Or input manually set by set</b></p>
+				<label>(side to side) <input type="text" id="x1steps" size="5" name="x1steps" maxlength="4"/>
+				steps
+				<select id="x1direction" name="x1direction">
+					<option value ="inside">inside</option>
+					<option value = "outside">outside</option>
+					<option value = "on">on</option>
+				</select>
+				the
+				<input type="text" id = "x1line" name="x1line" size="2" maxlength="3"/>
+				yd. line Side
+				<select id= "side1" name="side1">
+					<option value ="1">1</option>
+					<option value = "2">2</option>
+				</select>
+				and (front to back) <input type="text" id="y1steps" size="5" name="y1steps" maxlength="4"/>
+				steps
+				<select id="y1direction" name="y1direction">
+					<option value ="in frnt">in frnt of</option>
+					<option value = "behind">behind</option>
+					<option value = "on">on</option>
+				</select>
+				the
+				<select id="y1line" name="y1line">
+					<option value ="fline">front sideline</option>
+					<option value = "fhash">front hash</option>
+					<option value = "bhash">back hash</option>
+					<option value = "bline">back sideline</option>
+				</select>
+				to
+				</label>
+				<br />
+				<label>(side to side) <input type="text" id="x2steps" size="5" name="x2steps" maxlength="4"/>
+				steps
+				<select id="x2direction" name="x2direction">
+					<option value ="inside">inside</option>
+					<option value = "outside">outside</option>
+					<option value = "on">on</option>
+				</select>
+				the
+				<input type="text" id= "x2line" name="x2line" size="2" maxlength="3"/>
+				yd. line Side
+				<select id="side2" name="side2">
+					<option value ="1">1</option>
+					<option value = "2">2</option>
+				</select>
+				and (front to back) <input type="text" id ="y2steps" name="y2steps" size="5" maxlength="4"/>
+				steps
+				<select id="y2direction" name="y2direction">
+					<option value ="in frnt">in frnt of</option>
+					<option value = "behind">behind</option>
+					<option value = "on">on</option>
+				</select>
+				the
+				<select id="y2line" name="y2line">
+					<option value ="fline">front sideline</option>
+					<option value = "fhash">front hash</option>
+					<option value = "bhash">back hash</option>
+					<option value = "bline">back sideline</option>
+				</select>
+				<br />
+				<input type="button" id= "submit" name="submit" value="Submit">
+				<input type="button" id="reset" name="reset" value="Add new">
+				</label>
+		</fieldset>
+	</div><!--end of input-->
+
+	<div id="midset"><b>Your midsets:</b></div>
+
+	<br />
+	<hr />
+	<h2>Q&amp;A/Troubleshooting</h2>
+	<p><b>Nothing is showing up.</b></p>
+	<ol>
+		<li>Check your internet</li>
+		<li>Are you using some crappy browser no one should use &#40;read: internet explorer&#41; or is your browser outdated?<br />&#40;<b>edit</b> how to tell if your browser is outdated- just google "does [insert browser version here] support HTML5?"&#41;</li>
+		<li>Do you have JavaScript enabled? &#40;I promise I do not put ads&#41;</li>
+		<li>Do you have an adblocker that is blocking said JavaScript?</li>
+		<li>If neither of the above fix it, <a href="mailto: arfydogs7+midsetcalc@gmail.com">contact me.</a></li>
+	</ol>
+	<p><b>What are you doing with the files I upload?</b><br />Nothing. They're not being stored.</p>
+	<p><b>The scan function isn't working.</b><br />There may be a few bugs with processing the results given by the OCR that I haven't caught. Additionally, I'm not entirely sure how well the program works with dotsheets that appear different from the ones made in Pyware for University High School. Just use the manual input function.</p>
+	<p><b>Why is this website so ugly?</b><br /><i>I</i> think it looks great. I'm still working on CSS and web design isn't my thing, okay.</p>
+	<h2>Questions/Issues/Feedback?  &#40;criticism is always welcome&#41;</h2>
+	<p>Email me at: <a href="mailto: arfydogs7+midsetcalc@gmail.com">arfydogs7+midsetcalc@gmail.com</a></p>
+
+	<script src = "../js/utilities.js"></script>
+	<script src = "../js/midsetcalc/manual_midset.js"></script>
+	<!-- <script src = "../js/midsetcalc/scan_midset.js"></script> -->
+	<script src = "../js/midsetcalc/scan_midset_tesseract.js"></script>
+</body>
+</html>
